@@ -11,9 +11,12 @@
     "dev": "tsc -w & nodemon dist/index.js"
   },
   "dependencies": {
+    "cheerio": "1.0.0-rc.12",
+    "cohere-ai": "^6.2.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "langchain": "^0.0.160",
     "rimraf": "^5.0.5"
   },
   "devDependencies": {
