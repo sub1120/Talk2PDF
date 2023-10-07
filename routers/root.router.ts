@@ -5,6 +5,6 @@ import { upload } from "../utils/helpers";
 const rootRouter = Router();
 
 rootRouter.get("/upload", upload.array("doc"), loadDocs);
-rootRouter.get("/chat", getAnswer);
+rootRouter.get("/answer", getAnswer);
 
 export default rootRouter;

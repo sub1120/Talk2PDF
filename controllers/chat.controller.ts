@@ -61,19 +61,49 @@ export const loadDocs = async (req: Request, res: Response) => {
   }
 };
 
+/******************************************************
+ * @GET_ANSWER
+ * @route http://localhost:4000/api/v1/answer
+ * @description Controller to generate answer to question.
+ * @parameters A query
+ * @returns Answer to the question
+ ******************************************************/
 export const getAnswer = async (req: Request, res: Response) => {
-  const embeddings = new GooglePaLMEmbeddings();
-  const vectorStore = await FaissStore.load("./files/vectorstore", embeddings);
+  try {
+    //check if question exists
+    const question = req.body.question;
+    if (!question) {
+      throw new CustomError("Please provide question.", 400);
+    }
 
-  const model = new GooglePaLM();
-  const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());
+    //load vector store
+    const embeddings = new GooglePaLMEmbeddings();
+    const vectorStore = await FaissStore.load(config.STORE_PATH, embeddings);
 
-  const response = await chain.call({
-    query: "What is candidate name?",
-    timeout: 20000,
-  });
+    //load LLM model
+    const model = new GooglePaLM();
+    const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());
 
-  res.send({
-    data: response,
-  });
+    //Retrive Answer
+    const response = await chain.call({
+      query: question,
+      timeout: 20000,
+    });
+
+    //send success response
+    res.send({
+      success: true,
+      message: "Retrived answer successfully",
+      answer: response.text,
+    });
+  } catch (error: any) {
+    console.log(error);
+
+    //send error response
+    res.status(error.statusCode || 500).json({
+      success: false,
+      code: error.code || "UNKOWN",
+      message: error.message || "Something Went Wrong",
+    });
+  }
 };
