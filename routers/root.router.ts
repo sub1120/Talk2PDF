@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { getAnswer } from "../controllers/chat.controller";
+import { getAnswer, loadDocs } from "../controllers/chat.controller";
+import { upload } from "../utils/helpers";
 
 const rootRouter = Router();
 
+rootRouter.get("/upload", upload.array("doc"), loadDocs);
 rootRouter.get("/chat", getAnswer);
 
 export default rootRouter;
