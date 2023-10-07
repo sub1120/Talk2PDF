@@ -1,6 +1,4 @@
 const fs = require("fs");
-import multer from "multer";
-import config from "../config";
 
 export class CustomError extends Error {
   statusCode: number;
@@ -26,14 +24,3 @@ export const createDir = (dirPath: string) => {
     }
   });
 };
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, config.UPLOAD_PATH);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-export const upload = multer({ storage: storage });
