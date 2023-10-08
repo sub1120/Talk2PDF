@@ -24,3 +24,14 @@ export const createDir = (dirPath: string) => {
     }
   });
 };
+
+export const delDir = (dirPath: string) => {
+  fs.readdir(dirPath, (err: any, files: string[]) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      console.log(file + " : File Deleted Successfully.");
+      fs.unlinkSync(dirPath + file);
+    }
+  });
+};
