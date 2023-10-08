@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [loading, setLoading] = useState({
@@ -23,7 +25,20 @@ function App() {
     const currentFiles = event.currentTarget.files;
 
     if (!currentFiles || currentFiles?.length === 0) {
-      console.log("Please apload atleast one file"); // toast
+      toast.error("Please apload atleast one file", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setLoading({
+        ...loading,
+        isUploading: false,
+      });
       return;
     }
 
@@ -32,19 +47,39 @@ function App() {
       formData.append("doc", currentFiles[i]);
     }
 
-    // make a POST request with Axios
-    const res = await axios.post(
-      "http://localhost:4000/api/v1/doc/upload",
-      formData,
-      {
+    try {
+      // make a POST request with Axios
+      await axios.post("http://localhost:4000/api/v1/doc/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
-    );
+      });
+      toast.success("Files uploaded successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setFiles([...files, ...Array.from(currentFiles)]);
 
-    console.log(res); // toast
-    setFiles([...files, ...Array.from(currentFiles)]);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error("Something Went Wrong", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+
     setLoading({
       ...loading,
       isUploading: false,
@@ -70,16 +105,31 @@ function App() {
       question: chat.question,
     };
 
-    // make a POST request with Axios
-    const res = await axios.post(
-      "http://localhost:4000/api/v1/chat/answer",
-      formData
-    );
+    try {
+      // make a POST request with Axios
+      const res = await axios.post(
+        "http://localhost:4000/api/v1/chat/answer",
+        formData
+      );
 
-    setChat({
-      ...chat,
-      answer: res.data.answer,
-    });
+      setChat({
+        ...chat,
+        answer: res.data.answer,
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error("Something Went Wrong", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+
     setLoading({
       ...loading,
       isRetriving: false,
@@ -92,10 +142,33 @@ function App() {
       isDeleting: true,
     });
 
-    // make a DEL request with Axios
-    const res = await axios.delete("http://localhost:4000/api/v1/doc/delete");
+    try {
+      // make a DEL request with Axios
+      await axios.delete("http://localhost:4000/api/v1/doc/delete");
+      toast.success("Files deleted successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error("Something Went Wrong", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
 
-    console.log(res); // toast
     setLoading({
       ...loading,
       isDeleting: false,
@@ -109,6 +182,19 @@ function App() {
 
   return (
     <main className="text-center m-10  md:m-15 lg:m-20 space-y-5">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800">
         🎙Talk2PDF🎤
       </h1>
