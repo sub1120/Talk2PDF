@@ -8,8 +8,5 @@ expressApp.use(express.json());
 expressApp.use(express.urlencoded({ extended: true }));
 expressApp.use(cors());
 expressApp.use("/api/v1", rootRouter);
-expressApp.use("/api/v1/ping", (req: Request, res: Response) => {
-  return res.send("pong");
-});
 
 export default expressApp;
