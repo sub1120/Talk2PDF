@@ -6,6 +6,11 @@ import api from "./api";
 import { ToastContainer } from "react-toastify";
 import ChatInput from "./components/ChatInput";
 
+interface IConversation {
+  question: string;
+  answer: string;
+}
+
 function App() {
   const [loading, setLoading] = useState({
     isUploading: false,
@@ -14,7 +19,8 @@ function App() {
   });
 
   const [files, setFiles] = useState<File[]>([]);
-  const [chat, setChat] = useState({
+  const [currentQuestion, setCurrentQuestion] = useState("");
+  const [chat, setChat] = useState<IConversation>({
     question: "",
     answer: "",
   });
@@ -60,10 +66,7 @@ function App() {
 
   //input change handler
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setChat({
-      ...chat,
-      question: event.target.value,
-    });
+    setCurrentQuestion(event.target.value);
   };
 
   //question submit handler
@@ -72,20 +75,27 @@ function App() {
       ...loading,
       isRetriving: true,
     });
-
     event.preventDefault();
 
+    setChat((prevState) => {
+      return {
+        ...prevState,
+        question: currentQuestion,
+      };
+    });
     const formData = {
-      question: chat.question,
+      question: currentQuestion,
     };
 
     try {
       const res = await api.getAnswer(formData);
-
-      setChat({
-        ...chat,
-        answer: res.data.answer,
+      setChat((prevState) => {
+        return {
+          ...prevState,
+          answer: res.data.answer,
+        };
       });
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       notify("error", "Something Went Wrong");
@@ -149,37 +159,54 @@ function App() {
 
       {/* file input */}
       <section className="space-y-2">
-        <div className="flex justify-between">
-          <h2 className="text-md md:text-lg lg:text-xl">Upload PDFs</h2>
-          <button
-            className="text-white bg-orange-500 w-24 hover:bg-orange-600 p-2"
-            onClick={resetHandler}
-            disabled={loading.isDeleting}
-          >
-            Reset
-          </button>
-        </div>
-
         {files.length === 0 && (
-          <FileInput
-            submitHandler={fileSubmitHandler}
-            disabled={loading.isUploading}
-            isUploading={loading.isUploading}
-          />
+          <>
+            <h2 className="text-md md:text-lg lg:text-xl">Upload PDFs</h2>
+            <FileInput
+              submitHandler={fileSubmitHandler}
+              disabled={loading.isUploading}
+              isUploading={loading.isUploading}
+            />
+          </>
         )}
-        {files && <span>{`${files.length} files uploaded `} </span>}
+        {files && (
+          <div className="flex justify-between">
+            <span>{`${files.length} files uploaded `} </span>
+            <button
+              className="text-white bg-orange-500 w-24 hover:bg-orange-600 p-2"
+              onClick={resetHandler}
+              disabled={loading.isDeleting}
+            >
+              Reset
+            </button>
+          </div>
+        )}
       </section>
 
       {/* chat box */}
       {files.length !== 0 && (
-        <section className="space-y-2 bg-gray-500 rounded-md">
-          <p className="text-left h-16 rounded-md ">
-            {loading.isRetriving ? "🚀 Loading..." : chat.answer}
-          </p>
-          <div className="p-2">
+        <section className="bg-gray-100 rounded-md h-52 relative">
+          {chat.question && (
+            <>
+              <div className="bg-gray-100  mt-0">
+                <p className="text-left py-3 px-10 text-gray-800">
+                  <span className="font-semibold">You: </span>
+                  {chat.question}
+                </p>
+              </div>
+              <div className=" bg-gray-300 flex mt-0">
+                <p className="text-left px-10 py-3 text-gray-800">
+                  <span className="font-semibold">PDF:</span>{" "}
+                  {loading.isRetriving ? "🚀 Loading..." : chat.answer}
+                </p>
+              </div>
+            </>
+          )}
+
+          <div className="absolute bottom-0 py-2 px-2 w-full">
             <ChatInput
-              disabled={files?.length === 0}
-              value={chat.question}
+              disabled={loading.isRetriving}
+              value={currentQuestion}
               submitHandler={questionSubmitHandler}
               onChangeHandler={onChangeHandler}
             />
