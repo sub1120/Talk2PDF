@@ -18,6 +18,7 @@
 - Server Setup
 - Project Structure
 - API End Points
+- Deployment
 - Contact
 
 ### Demo Video
@@ -98,21 +99,6 @@ Server Structure
 | `server/types` | Defined types.|
 | `server/util` | Contains some helper functions and constants |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### API End Points 
 
 #### 1. Upload documents
@@ -140,6 +126,15 @@ Body
   "question": "Your question"
 }
 ```
+
+### Deployment
+- Frontend deployed on [netlfy.com](https://app.netlify.com/)
+
+  URL: https://app.netlify.com/sites/zingy-panda-74849c
+  
+- Backend deployed on [render.com](https://render.com/)
+
+  URL: https://talk2pdf-api.onrender.com
 
 ### Contact
 Contact on `subhamsahu1120@gmail.com` for any kind of support
