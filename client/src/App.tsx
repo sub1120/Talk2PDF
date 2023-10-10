@@ -55,7 +55,7 @@ function App() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      notify("error", "Something Went Wrong");
+      notify("error", error.response.data.message || "Something Went Wrong");
     }
 
     setLoading({
@@ -98,7 +98,7 @@ function App() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      notify("error", "Something Went Wrong");
+      notify("error", error.response.data.message || "Something Went Wrong");
     }
 
     setLoading({
@@ -119,7 +119,7 @@ function App() {
       notify("success", "Files deleted successfully");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      notify("error", "Something Went Wrong");
+      notify("error", error.response.data.message || "Something Went Wrong");
     }
 
     setLoading({
