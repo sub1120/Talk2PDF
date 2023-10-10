@@ -11,28 +11,38 @@
   <p>Talk2PDF is a revolutionary application that empowers users to interact with their PDF documents like never before.</p>
 </div>
 
+
+## Tabel of Content
+- Demo Video 
+- Client Setup
+- Server Setup
+- API End Points
+- Contact
+
+### Demo Video
+
 https://github.com/sub1120/Talk2PDF/assets/43786036/585c5ad5-958c-41fa-890b-eec0d71bbfdb
 
-## Getting Started :rocket:
 Below steps will guide you, how to set up your project locally. To get a local copy up and running follow these simple example steps.
 
-### 1. Clone Repo
+### Client Setup
+
+1. Clone Repo
 ```
 git clone https://github.com/sub1120/Talk2PDF.git
 ```
 
-### 2. Client Setup
-1. Install pnpm
+2. Install pnp
 ```
 npm i -g pnpm
 ```
 
-2. Install dependencies for client
+3. Install dependencies for client
 ```
 cd client; pnpm i
 ```
 
-3. Create a .env file and put this
+4. Create a .env file and put this
 ```
 VITE_API_URL=http://localhost:4001/api/v1
 ```
@@ -42,7 +52,7 @@ VITE_API_URL=http://localhost:4001/api/v1
 cd client; pnpm run dev
 ```
 
-### 2. Server Setup
+### Server Setup
 
 1. Install dependencies for server
 ```
@@ -62,21 +72,21 @@ Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://
 cd server; npm run dev
 ```
 
-### 3. API End Points 
+### API End Points 
 
-#### a. Upload documents
+#### 1. Upload documents
 
 ```
 POST /api/v1/doc/upload
 ```
 
-#### b. Delete all documents
+#### 2. Delete all documents
 
 ```
 DEL /api/v1/doc/delete
 ```
 
-#### c. Get answer of given question
+#### 3. Get answer of given question
 
 ```
 POST api/v1/chat/answer
@@ -90,5 +100,5 @@ Body
 }
 ```
 
-## Contact
+### Contact
 Contact on `subhamsahu1120@gmail.com` for any kind of support
