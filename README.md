@@ -66,5 +66,33 @@ Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://
 cd server; pnpm run dev
 ```
 
+### 3. API End Points 
+
+#### a. Upload documents
+
+```
+POST /api/v1/doc/upload
+```
+
+#### b. Delete all documents
+
+```
+DEL /api/v1/doc/delete
+```
+
+#### c. Get answer of given question
+
+```
+POST api/v1/chat/answer
+```
+
+Body
+
+```JSON
+{
+  "question": "Your question"
+}
+```
+
 ## Contact
 Contact on `subhamsahu1120@gmail.com` for any kind of support
