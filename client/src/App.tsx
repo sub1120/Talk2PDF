@@ -123,14 +123,16 @@ function App() {
     }
 
     setLoading({
-      ...loading,
+      isRetriving: false,
       isDeleting: false,
+      isUploading: false,
     });
     setFiles([]);
     setChat({
       question: "",
       answer: "",
     });
+    setCurrentQuestion("");
   };
 
   return (
