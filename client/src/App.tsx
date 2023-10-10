@@ -169,17 +169,21 @@ function App() {
       </section>
 
       {/* chat box */}
-      <section className="space-y-2">
-        <ChatInput
-          disabled={files?.length === 0}
-          value={chat.question}
-          submitHandler={questionSubmitHandler}
-          onChangeHandler={onChangeHandler}
-        />
-        <p className="text-left p-5 bg-gray-200 rounded-md">
-          🚀 {loading.isRetriving ? "Loading..." : chat.answer}
-        </p>
-      </section>
+      {files.length === 0 && (
+        <section className="space-y-2 bg-gray-500 rounded-md">
+          <p className="text-left h-16 rounded-md ">
+            {loading.isRetriving ? "🚀 Loading..." : chat.answer}
+          </p>
+          <div className="p-2">
+            <ChatInput
+              disabled={files?.length === 0}
+              value={chat.question}
+              submitHandler={questionSubmitHandler}
+              onChangeHandler={onChangeHandler}
+            />
+          </div>
+        </section>
+      )}
     </main>
   );
 }

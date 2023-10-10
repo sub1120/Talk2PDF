@@ -11,7 +11,7 @@
     "dev": "tsc -w & nodemon dist/index.js"
   },
   "dependencies": {
-    "@google-ai/generativelanguage": "^1.1.0",
+    "@google-ai/generativelanguage": "^0.2.1",
     "cheerio": "1.0.0-rc.12",
     "cohere-ai": "^6.2.2",
     "cors": "^2.8.5",

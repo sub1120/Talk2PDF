@@ -18,7 +18,7 @@ const ChatInput = ({
       <input
         name="question"
         type="text"
-        className="px-5 w-full py-2 outline-none border-gray-400 border rounded-full text-gray-800 text-sm md:text-md lg:text-lg"
+        className="px-5 w-full py-2 outline-none shadow-sm rounded-md text-gray-200 placeholder:text-gray-100 bg-gray-400 text-sm md:text-md lg:text-lg"
         placeholder="Type your question here"
         onChange={onChangeHandler}
         disabled={disabled}
