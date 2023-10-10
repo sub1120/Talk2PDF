@@ -59,9 +59,12 @@ PORT=4000
 GOOGLE_PALM_API_KEY=YOUR-API-KEY
 ```
 
-Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://developers.generativeai.google/products/palm)(https://developers.generativeai.google/tutorials/setup))
+Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://developers.generativeai.google/tutorials/setup)
 
 5. Start server locally
 ```
 cd server; pnpm run dev
 ```
+
+## Contact
+Contact on `subhamsahu1120@gmail.com` for any kind of support
