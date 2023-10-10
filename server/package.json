@@ -5,7 +5,6 @@
   "main": "index.ts",
   "scripts": {
     "build": "rimraf dist && npx tsc",
-    "prestart": "npm run build",
     "start": "node dist/index.js",
     "predev": "npm run build",
     "dev": "tsc -w & nodemon dist/index.js"
