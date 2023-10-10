@@ -160,16 +160,18 @@ function App() {
           </button>
         </div>
 
-        <FileInput
-          submitHandler={fileSubmitHandler}
-          disabled={loading.isUploading}
-          isUploading={loading.isUploading}
-        />
+        {files.length === 0 && (
+          <FileInput
+            submitHandler={fileSubmitHandler}
+            disabled={loading.isUploading}
+            isUploading={loading.isUploading}
+          />
+        )}
         {files && <span>{`${files.length} files uploaded `} </span>}
       </section>
 
       {/* chat box */}
-      {files.length === 0 && (
+      {files.length !== 0 && (
         <section className="space-y-2 bg-gray-500 rounded-md">
           <p className="text-left h-16 rounded-md ">
             {loading.isRetriving ? "🚀 Loading..." : chat.answer}
