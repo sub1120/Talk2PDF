@@ -16,6 +16,7 @@
 - Demo Video 
 - Client Setup
 - Server Setup
+- Project Structure
 - API End Points
 - Contact
 
@@ -71,6 +72,46 @@ Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://
 ```
 cd server; npm run dev
 ```
+
+### Project Structure
+The repository contains two folder, one for frontend code (`client`) and other for backend code (`server`). Below is description of some important subfolders.
+
+Client Structure
+|File| Description|
+|------|------------|
+| `client/src` | Contains main srouce code for frontend |
+| `client/src/api` | Contains API Inegration functions |
+| `client/src/components` | Contains react components |
+| `client/src/util` | Contains some helper functions and constants |
+| `client/src/App.tsx` | Its root component of our application |
+| `client/src/main.tsx` | Its app entry point.|
+
+Server Structure
+|File| Description|
+|------|------------|
+| `server/controllers/chat.controllers.ts` | Defined controller to get answer from llm.|
+| `server/controllers/doc.controller.ts` | Defined controllers to upload or delete document and vectorstore.|
+| `server/middleware/uploader.middleware.ts` | Defined middleware to validate file and upload to server.|
+| `server/router/doc.router.ts` | Defined all api routes for doc controllers.|
+| `server/router/chat.router.ts` | Defined all api routes for chat controllers.|
+| `server/config` | Contains all config varibles required by app.|
+| `server/types` | Defined types.|
+| `server/util` | Contains some helper functions and constants |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### API End Points 
 
