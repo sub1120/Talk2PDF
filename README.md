@@ -43,14 +43,10 @@ cd client; pnpm run dev
 ```
 
 ### 2. Server Setup
-1. Install pnpm (ignore if already done)
-```
-npm i -g pnpm
-```
 
-2. Install dependencies for server
+1. Install dependencies for server
 ```
-cd server; pnpm i
+cd server; npm i
 ```
 
 3. Create a .env file and put this
@@ -63,7 +59,7 @@ Note: To create an `GOOGLE_PALM_API_KEY`, please visit [Get an API key](https://
 
 5. Start server locally
 ```
-cd server; pnpm run dev
+cd server; npm run dev
 ```
 
 ### 3. API End Points 
