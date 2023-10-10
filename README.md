@@ -11,6 +11,8 @@
   <p>Talk2PDF is a revolutionary application that empowers users to interact with their PDF documents like never before.</p>
 </div>
 
+https://github.com/sub1120/Talk2PDF/assets/43786036/585c5ad5-958c-41fa-890b-eec0d71bbfdb
+
 ## Getting Started :rocket:
 Below steps will guide you, how to set up your project locally. To get a local copy up and running follow these simple example steps.
 
