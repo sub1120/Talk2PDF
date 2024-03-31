@@ -8,7 +8,7 @@
 ![Express.js](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![js.langchain](https://img.shields.io/badge/langchain%20js-000000?style=for-the-badge&logo=reactjs&logoColor=white)
 
-  <p>Talk2PDF is a revolutionary application that empowers users to interact with their PDF documents like never before.</p>
+  <p>Talk2PDF is an application that empowers users to ask find answers within their PDF documents.</p>
 </div>
 
 
